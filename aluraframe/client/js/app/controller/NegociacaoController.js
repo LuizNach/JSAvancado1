@@ -23,43 +23,38 @@ class NegociacaoController {
         this._data = $('#data');
         this._quantidade = $('#quantidade');
         this._valor = $('#valor');
+        this._listaNegociacoes = new ListaNegociacoes();
 
     }
 
     adiciona(event) {
         /* we are prevent the default behavior of the form refresh of html5 */
-        event.preventDefault(); 
+        event.preventDefault();
+
+        //let dateHelper = new DateHelper();
         
         let negociacao = new Negociacao(
-
-            /**In order to create a Date instance, we will need to prepare the string _data for 
-             * the Date constructor. Data can be instanciated as: 
-             * new Date(2006,7,30) but this way the month starts at 0
-             * new Date('2006-7-30')
-             * new Date('2006,7,30')
-             * new Date(['2016-7-30'])
-             * new Date(['2016-7-30'])
-             * new Date(['2016','7','30']) 
-             *  */
             
-            new Date ( ... /* spread operator, each individual element inside the array is placed into each of functions parameters */
-                this._data.value
-                    .split('-')
-                    .map( (item,index) => index == 1 ? item - 1 : item )
-            ), 
+            DateHelper.textToDate(this._data.value), 
             this._quantidade.value,
             this._valor.value
         );
 
-        //console.log(negociacao);
+        this._limpaFomulario();
 
+        this._listaNegociacoes.adiciona(negociacao);
+
+        console.log(this._listaNegociacoes.negociacoes);
+
+    }
+
+    _limpaFomulario(){
         /*clear form*/
         this._data.value = '';
         this._quantidade.value = 1;
-        this._valor.value = 0;
+        this._valor.value = 0.0;
 
         this._data.focus();
-
     }
 
 }
