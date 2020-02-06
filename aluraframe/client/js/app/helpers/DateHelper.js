@@ -1,7 +1,7 @@
 class DateHelper {
 
     constructor() {
-        throw new Error("DateHelper has static method, can't be instanciated");
+        throw new Error("DateHelper uses static methods, can't be instanciated");
     }
 
     static textToDate(text) {
@@ -15,7 +15,7 @@ class DateHelper {
          * new Date(['2016-7-30'])
          * new Date(['2016','7','30']) 
          *  */
-        if(!/\d{4}-\d{2}-\d{2}/.test(text)) {
+        if(!/^\d{4}-\d{2}-\d{2}$/.test(text)) {
             throw new Error(`${text} on Date format yyyy-mm-dd incorrect`);
         }
         return new Date ( ... /* spread operator, each individual element inside the array is placed into each of functions parameters */

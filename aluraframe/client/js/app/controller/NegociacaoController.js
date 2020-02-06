@@ -30,22 +30,19 @@ class NegociacaoController {
     adiciona(event) {
         /* we are prevent the default behavior of the form refresh of html5 */
         event.preventDefault();
-
-        //let dateHelper = new DateHelper();
         
-        let negociacao = new Negociacao(
-            
+        this._listaNegociacoes.adiciona( this._criaNegociacao() );
+
+        this._limpaFomulario();
+
+    }
+
+    _criaNegociacao() {
+        return new Negociacao(
             DateHelper.textToDate(this._data.value), 
             this._quantidade.value,
             this._valor.value
         );
-
-        this._limpaFomulario();
-
-        this._listaNegociacoes.adiciona(negociacao);
-
-        console.log(this._listaNegociacoes.negociacoes);
-
     }
 
     _limpaFomulario(){
