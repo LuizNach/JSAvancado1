@@ -1,15 +1,6 @@
-class NegociacoesView {
+class NegociacoesView extends View {
 
-    constructor(element) {
-        this._element = element;
-        
-    }
-
-    update(listaNegociacoesObject) {
-        this._element.innerHTML = this._template(listaNegociacoesObject);
-    }
-
-    _template( listaNegociacoesObject ) {
+    template( listaNegociacoesObject ) {
         return `
         <table class="table table-hover table-bordered">
             <thead>
